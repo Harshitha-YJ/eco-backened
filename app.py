@@ -13,8 +13,9 @@ def home():
 
 @app.route('/upload', methods=['POST'])
 def upload():
-    if 'file' not in request.files:
-        return jsonify({"error": "No file uploaded"}), 400
+    file = request.files['file']
+    # Process it and return a response
+    return jsonify({"message": "Upload received", "filename": file.filename})
 
     file = request.files['file']
     if file.filename.endswith('.pdf'):
@@ -28,4 +29,3 @@ def upload():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
