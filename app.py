@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
-from scripts.data_extractor import BiomarkerExtractor 
+from flask_cors import CORS
+from scripts.data_extractor import BiomarkerExtractor
 import os
 
-app = Flask(__name__)
+app = Flask(__name__)           # ✅ Define app first
+CORS(app)                       # ✅ Now this line is safe
 extractor = BiomarkerExtractor()
 
 @app.route('/')
@@ -26,3 +28,4 @@ def upload():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
